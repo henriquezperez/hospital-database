@@ -79,3 +79,42 @@ INSERT INTO Empleados (id, nombre, depto_id) VALUES
 (243, 'Ramiro', 5), -- depto_id inexistente
 (244, 'Silvia', NULL),
 (245, 'Tomás', 6); -- depto_id inexistente
+
+-- CONSULTAS JOIN
+SELECT Empleados.nombre, Departamentos.nombre
+FROM Empleados
+INNER JOIN Departamentos ON Empleados.depto_id = Departamentos.id;
+
+SELECT Empleados.nombre, Departamentos.nombre
+FROM Empleados
+LEFT JOIN Departamentos ON Empleados.depto_id = Departamentos.id;
+
+SELECT Empleados.nombre, Departamentos.nombre
+FROM Empleados
+RIGHT JOIN Departamentos ON Empleados.depto_id = Departamentos.id;
+
+SELECT Empleados.nombre, Departamentos.nombre
+FROM Empleados
+FULL OUTER JOIN Departamentos ON Empleados.depto_id = Departamentos.id;
+
+SELECT Empleados.nombre, Departamentos.nombre
+FROM Empleados
+CROSS JOIN departamentos;
+
+-- Parte 1: LEFT JOIN (todos los empleados, incluso sin departamento)
+SELECT 
+  Empleados.id AS empleado_id,
+  Empleados.nombre AS empleado,
+  Departamentos.nombre AS departamento
+FROM Empleados
+LEFT JOIN Departamentos ON Empleados.depto_id = Departamentos.id
+
+UNION
+
+-- Parte 2: RIGHT JOIN (todos los departamentos, incluso sin empleados)
+SELECT 
+  Empleados.id AS empleado_id,
+  Empleados.nombre AS empleado,
+  Departamentos.nombre AS departamento
+FROM Empleados
+RIGHT JOIN Departamentos ON Empleados.depto_id = Departamentos.id;
